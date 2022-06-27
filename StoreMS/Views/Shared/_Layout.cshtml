@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="~/StoreMS.styles.css" asp-append-version="true" />
 </head>
 <body>
+    @{
+        var userId = Context.Session.GetString("userId");
+        var email = Context.Session.GetString("email");
+        var actorId = Context.Session.GetString("actorId");
+    }
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
@@ -25,6 +30,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (userId == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+
                     </ul>
                 </div>
             </div>
